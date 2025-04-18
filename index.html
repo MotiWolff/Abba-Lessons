@@ -475,7 +475,7 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${lesson.description}</p>
-                            <button class="watch-button" onclick="watchLesson('${lesson.colId || ''}', '${lesson.title}')" data-col-id="${lesson.colId || ''}">
+                            <button class="watch-button" onclick="watchLesson('${lesson.col_id || ''}', '${lesson.title}')" data-col-id="${lesson.col_id || ''}">
                                 <i class="fas fa-play me-2"></i>צפייה בשיעור
                             </button>
                         </div>
@@ -604,17 +604,17 @@
         }
 
         // Function to safely watch lesson
-        function watchLesson(colId, title) {
-            console.log('Watch button clicked:', { colId, title }); // Debug log
+        function watchLesson(col_id, title) {
+            console.log('Watch button clicked:', { col_id, title }); // Debug log
             try {
-                if (!colId) {
+                if (!col_id) {
                     console.error('No COL ID provided for lesson:', title);
                     alert('לא נמצא מזהה שיעור. נא לבדוק את הנתונים.');
                     return;
                 }
                 
                 // Construct the COL URL
-                const colUrl = `https://col.org.il/news/${colId}`;
+                const colUrl = `https://col.org.il/news/${col_id}`;
                 console.log('Opening URL:', colUrl); // Debug log
                 
                 // Open in new tab

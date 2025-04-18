@@ -475,7 +475,7 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${lesson.description}</p>
-                            <button class="watch-button" onclick="watchLesson('${lesson.col_id}', '${lesson.title}')">
+                            <button class="watch-button" onclick="watchLesson('${lesson.colId}', '${lesson.title}')">
                                 <i class="fas fa-play me-2"></i>צפייה בשיעור
                             </button>
                         </div>
@@ -607,12 +607,24 @@
         function watchLesson(colId, title) {
             try {
                 if (!colId) {
-                    console.error('Invalid COL ID');
+                    console.error('No COL ID provided for lesson:', title);
                     return;
                 }
-                window.open(`https://col.org.il/news/${encodeURIComponent(colId)}`, '_blank');
+                
+                // For testing, log the URL that would be opened
+                console.log('Opening URL:', `https://col.org.il/news/${colId}`);
+                
+                // Open in new tab
+                const url = `https://col.org.il/news/${colId}`;
+                const newWindow = window.open(url, '_blank');
+                
+                // Check if popup was blocked
+                if (newWindow === null) {
+                    alert('נא לאפשר חלונות קופצים כדי לצפות בשיעור');
+                }
             } catch (error) {
                 console.error('Error opening lesson:', error);
+                alert('אירעה שגיאה בפתיחת השיעור. נא לנסות שוב.');
             }
         }
 

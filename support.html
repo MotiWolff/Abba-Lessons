@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תמיכה - שיעורי הרב זושא וואלף</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent-color), #f0f7ff);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .header p {
+            color: #64748b;
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            background: var(--accent-color);
+            padding: 1rem;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .support-card {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .support-card:hover {
+            background: var(--accent-color);
+        }
+
+        .support-card h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .support-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+        .developer-card {
+            text-align: center;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .developer-card:hover {
+            background: var(--accent-color);
+        }
+
+        .developer-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+        }
+
+        .developer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .developer-info h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .developer-info p {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section-title i {
+                font-size: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container">
+            <h1>תמיכה</h1>
+            <p>מידע טכני ופרטי יצירת קשר</p>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- Technical Support Section -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-headset"></i>
+                <h2>תמיכה טכנית</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-play-circle me-2"></i>בעיות בהפעלת וידאו</h3>
+                        <p>אם אתם נתקלים בבעיות בהפעלת השיעורים, וודאו שהדפדפן שלכם מעודכן ושיש לכם חיבור אינטרנט יציב.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-mobile-alt me-2"></i>תאימות למכשירים</h3>
+                        <p>האתר מותאם לצפייה בכל המכשירים: מחשב, טאבלט וטלפון נייד.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-clock me-2"></i>זמני טעינה</h3>
+                        <p>אם השיעורים נטענים לאט, נסו לרענן את הדף או להתחבר לרשת אינטרנט מהירה יותר.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-envelope me-2"></i>דיווח על תקלות</h3>
+                        <p>נתקלתם בבעיה? שלחו לנו מייל עם תיאור מפורט של התקלה ונחזור אליכם בהקדם.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developers Section -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-code"></i>
+                <h2>מפתח האתר</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="developer-card">
+                        <div class="developer-image">
+                            <img src="https://avatars.githubusercontent.com/u/92089441" alt="מרדכי וולף">
+                        </div>
+                        <div class="developer-info">
+                            <h3>מרדכי וולף</h3>
+                            <p>מפתח Full Stack</p>
+                            <div class="social-links">
+                                <a href="https://github.com/mordechay007" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mordechaywolff" target="_blank" title="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="mailto:mordechaywolff@gmail.com" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Requirements Section -->
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-laptop"></i>
+                <h2>דרישות מערכת</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-globe me-2"></i>דפדפנים נתמכים</h3>
+                        <p>Chrome (גרסה 90 ומעלה), Firefox (גרסה 88 ומעלה), Safari (גרסה 14 ומעלה), Edge (גרסה 90 ומעלה)</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h3><i class="fas fa-wifi me-2"></i>חיבור אינטרנט</h3>
+                        <p>מהירות אינטרנט מומלצת: 10Mbps ומעלה לצפייה באיכות גבוהה</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="footer.js"></script>
+    <script src="navbar.js"></script>
+    <script src="transitions.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize navbar and footer
+        includeNavbar();
+        includeFooter();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אודות - שיעורי הרב זושא וואלף</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent-color), #f0f7ff);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .header p {
+            color: #64748b;
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            background: var(--accent-color);
+            padding: 1rem;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            color: #64748b;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section-title i {
+                font-size: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="container">
+            <h1>אודות</h1>
+            <p>מידע על הרב זושא וואלף ומטרת האתר</p>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-user-tie"></i>
+                <h2>הרב זושא וואלף</h2>
+            </div>
+            <p>
+                הרב זושא וואלף הוא מרצה בכיר בנושאי חסידות, תורה ומחשבת ישראל. במשך שנים רבות, הרב וואלף מעביר
+                שיעורים מרתקים המשלבים עומק חסידי עם רלוונטיות לחיי היומיום. דרך הוראה ייחודית וכריזמטית, הוא מנגיש
+                את תורת החסידות לקהל הרחב.
+            </p>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-globe"></i>
+                <h2>על האתר</h2>
+            </div>
+            <p>
+                אתר זה מרכז את שיעוריו של הרב וואלף במגוון נושאים, מסודרים לפי קטגוריות ותאריכים. השיעורים זמינים
+                לצפייה ביוטיוב ובאתר COL, וכוללים נושאים כמו מבוא לחסידות, פרשת השבוע, שיעורים לנשים ובנות ישראל,
+                פרקי אבות, גאולה ומשיח ומועדים.
+            </p>
+            <p>
+                האתר מתעדכן באופן שוטף עם שיעורים חדשים, ומטרתו להיות משאב נגיש ומקיף לכל המעוניין להתעמק
+                בתורת החסידות ומחשבת ישראל.
+            </p>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <i class="fas fa-bullseye"></i>
+                <h2>מטרת האתר</h2>
+            </div>
+            <p>
+                מטרת האתר היא להנגיש את תורת החסידות ומחשבת ישראל לציבור הרחב באמצעות:
+            </p>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <i class="fas fa-check text-primary me-2"></i>
+                    העמקת ההבנה בתורת החסידות
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-check text-primary me-2"></i>
+                    ניתוח מעמיק של פרשות השבוע
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-check text-primary me-2"></i>
+                    הקניית כלים מעשיים לעבודת ה'
+                </li>
+                <li class="mb-2">
+                    <i class="fas fa-check text-primary me-2"></i>
+                    חיבור בין תורת החסידות לחיי היומיום
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Footer JS -->
+    <script src="footer.js"></script>
+    <!-- Navbar JS -->
+    <script src="navbar.js"></script>
+    <!-- Transitions JS -->
+    <script src="transitions.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize navbar and footer
+        includeNavbar();
+        includeFooter();
+    </script>
+</body>
+</html> 

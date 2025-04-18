@@ -1,0 +1,18 @@
+{
+  "name": "abba-lessons",
+  "version": "1.0.0",
+  "description": "שיעורי הרב זושא וואלף - מאגר שיעורים בנושאי חסידות, פרשת השבוע ומחשבת ישראל",
+  "scripts": {
+    "build": "npm run clean && npm run copy-assets && npm run minify",
+    "clean": "rm -rf dist/",
+    "copy-assets": "mkdir -p dist && cp *.html dist/ && cp *.js dist/ && cp *.webp dist/ && cp *.ico dist/ && cp *.png dist/",
+    "minify": "html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true dist/*.html -o dist/*.html"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2"
+  },
+  "devDependencies": {
+    "html-minifier": "^4.0.0"
+  }
+} 

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול שיעורים - שיעורי הרב זושא וואלף</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-bottom: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent-color), #f0f7ff);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .back-to-home {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .back-to-home:hover {
+            color: var(--primary-color);
+        }
+
+        .content-section {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            background: var(--accent-color);
+            padding: 1rem;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+
+        .form-floating > label {
+            padding: 0.75rem 0.75rem;
+            opacity: 0.8;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 0.5rem 0.75rem;
+            height: calc(2.5rem + 2px);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        textarea.form-control {
+            height: auto;
+            min-height: 100px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-primary {
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            max-width: 200px;
+            margin: 1rem auto 0;
+            display: block;
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .lessons-list {
+            margin-top: 2rem;
+        }
+
+        .lesson-item {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-item:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-info h5 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .lesson-info p {
+            margin: 0.5rem 0 0;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .lesson-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .lesson-meta i {
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .edit-btn {
+            color: var(--primary-color);
+        }
+
+        .edit-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .delete-btn {
+            color: #ef4444;
+        }
+
+        .delete-btn:hover {
+            background: #fee2e2;
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail-preview {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            display: none;
+            border: 2px dashed #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .thumbnail-preview:hover {
+            border-color: var(--primary-color);
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .login-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .sort-controls {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .sort-controls label {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .sort-select {
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sort-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container position-relative">
+            <a href="index.html" class="back-to-home">
+                <i class="fas fa-arrow-right"></i>
+                חזרה לדף הבית
+            </a>
+            <h1>ניהול שיעורים</h1>
+            <p class="text-muted">הוספה, עריכה ומחיקה של שיעורים</p>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <div class="container" id="loginSection">
+        <div class="login-container">
+            <div class="section-title">
+                <i class="fas fa-user-shield"></i>
+                <h2>כניסה למערכת הניהול</h2>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="username" placeholder="שם משתמש" required>
+                    <label for="username">שם משתמש</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" placeholder="סיסמה" required>
+                    <label for="password">סיסמה</label>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt me-2"></i>כניסה
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div class="container admin-content" id="adminContent">
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-plus-circle"></i>
+                <h2>הוספת שיעור חדש</h2>
+            </div>
+            <form id="lessonForm">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="title" placeholder="כותרת השיעור" required>
+                    <label for="title">כותרת השיעור</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" id="description" placeholder="תיאור השיעור" style="height: 100px" required></textarea>
+                    <label for="description">תיאור השיעור</label>
+                </div>
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="date" required>
+                    <label for="date">תאריך השיעור</label>
+                </div>
+                <div class="form-floating">
+                    <select class="form-select" id="category" required>
+                        <option value="" disabled selected>בחר קטגוריה</option>
+                        <option value="מבוא-לחסידות">מבוא לחסידות</option>
+                        <option value="פרשת-השבוע">פרשת השבוע</option>
+                        <option value="נשי-ובנות-ישראל">נשי ובנות ישראל</option>
+                        <option value="פרקי-אבות">פרקי אבות</option>
+                        <option value="גאולה-ומשיח">גאולה ומשיח</option>
+                        <option value="מועדים">מועדים</option>
+                        <option value="מיוחדים">מיוחדים</option>
+                    </select>
+                    <label for="category">קטגוריה</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="col_id" placeholder="מזהה COL" required>
+                    <label for="col_id">מזהה COL</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="duration" placeholder="משך השיעור" required>
+                    <label for="duration">משך השיעור</label>
+                </div>
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">תמונת השיעור</label>
+                    <input type="file" class="form-control" id="thumbnail" accept="image/*">
+                    <img id="thumbnailPreview" class="thumbnail-preview" src="" alt="תצוגה מקדימה">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>שמור שיעור
+                </button>
+            </form>
+        </div>
+
+        <div class="content-section">
+            <div class="section-title">
+                <i class="fas fa-list"></i>
+                <h2>שיעורים קיימים</h2>
+            </div>
+            <div class="sort-controls">
+                <label for="sortBy">מיין לפי:</label>
+                <select id="sortBy" class="sort-select" onchange="sortLessons()">
+                    <option value="date-desc">תאריך - מהחדש לישן</option>
+                    <option value="date-asc">תאריך - מהישן לחדש</option>
+                    <option value="title">כותרת - א-ת</option>
+                    <option value="category">קטגוריה</option>
+                    <option value="duration">משך השיעור</option>
+                    <option value="parsha">פרשת השבוע - לפי סדר התורה</option>
+                </select>
+            </div>
+            <div id="lessonsList" class="lessons-list">
+                <!-- Lessons will be dynamically populated here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Footer JS -->
+    <script src="footer.js"></script>
+
+    <script>
+        // Initialize footer
+        includeFooter();
+
+        // Authentication
+        const ADMIN_USERNAME = 'admin';
+        const ADMIN_PASSWORD = 'admin123'; // In production, use a secure password hash
+
+        function checkAuth() {
+            return localStorage.getItem('isAuthenticated') === 'true';
+        }
+
+        function showAdminContent() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+        }
+
+        function hideAdminContent() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('adminContent').style.display = 'none';
+        }
+
+        // Handle login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                localStorage.setItem('isAuthenticated', 'true');
+                showAdminContent();
+                loadLessons();
+            } else {
+                alert('שם משתמש או סיסמה שגויים');
+            }
+        });
+
+        // Check authentication on page load
+        if (checkAuth()) {
+            showAdminContent();
+            loadLessons();
+        } else {
+            hideAdminContent();
+        }
+
+        // Handle thumbnail preview
+        document.getElementById('thumbnail').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('thumbnailPreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load lessons from localStorage
+        function loadLessons() {
+            const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+            const lessonsList = document.getElementById('lessonsList');
+            lessonsList.innerHTML = '';
+
+            if (lessons.length === 0) {
+                lessonsList.innerHTML = '<p class="text-center text-muted">אין שיעורים זמינים</p>';
+                return;
+            }
+
+            sortLessons(lessons);
+
+            lessons.forEach((lesson, index) => {
+                const lessonItem = document.createElement('div');
+                lessonItem.className = 'lesson-item';
+                lessonItem.innerHTML = `
+                    <div class="lesson-info">
+                        <h5>${lesson.title}</h5>
+                        <p>${lesson.description}</p>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-tag"></i> ${lesson.category}</span>
+                            <span><i class="far fa-calendar-alt"></i> ${lesson.date}</span>
+                            <span><i class="far fa-clock"></i> ${lesson.duration}</span>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="edit-btn" onclick="editLesson(${index})" title="עריכת שיעור">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="delete-btn" onclick="deleteLesson(${index})" title="מחיקת שיעור">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                lessonsList.appendChild(lessonItem);
+            });
+        }
+
+        // Sort lessons based on selected criteria
+        function sortLessons(lessonsArray) {
+            const sortBy = document.getElementById('sortBy').value;
+            const lessons = lessonsArray || JSON.parse(localStorage.getItem('lessons')) || [];
+
+            const parshaOrder = [
+                'בראשית', 'נח', 'לך לך', 'וירא', 'חיי שרה', 'תולדות', 'ויצא', 'וישלח', 'וישב', 'מקץ',
+                'ויגש', 'ויחי', 'שמות', 'וארא', 'בא', 'בשלח', 'יתרו', 'משפטים', 'תרומה', 'תצוה',
+                'כי תשא', 'ויקהל', 'פקודי', 'ויקרא', 'צו', 'שמיני', 'תזריע', 'מצורע', 'אחרי מות', 'קדושים',
+                'אמור', 'בהר', 'בחוקותי', 'במדבר', 'נשא', 'בהעלותך', 'שלח', 'קרח', 'חקת', 'בלק',
+                'פינחס', 'מטות', 'מסעי', 'דברים', 'ואתחנן', 'עקב', 'ראה', 'שופטים', 'כי תצא', 'כי תבוא',
+                'נצבים', 'וילך', 'האזינו', 'וזאת הברכה'
+            ];
+
+            switch (sortBy) {
+                case 'date-desc':
+                    lessons.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'date-asc':
+                    lessons.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'title':
+                    lessons.sort((a, b) => a.title.localeCompare(b.title, 'he'));
+                    break;
+                case 'category':
+                    lessons.sort((a, b) => a.category.localeCompare(b.category, 'he'));
+                    break;
+                case 'duration':
+                    lessons.sort((a, b) => {
+                        const getDurationMinutes = (duration) => {
+                            const match = duration.match(/(\d+)/);
+                            return match ? parseInt(match[0]) : 0;
+                        };
+                        return getDurationMinutes(a.duration) - getDurationMinutes(b.duration);
+                    });
+                    break;
+                case 'parsha':
+                    lessons.sort((a, b) => {
+                        // Only sort lessons in the פרשת-השבוע category
+                        if (a.category === 'פרשת-השבוע' && b.category === 'פרשת-השבוע') {
+                            const getParsha = (title) => {
+                                return parshaOrder.findIndex(parsha => title.includes(parsha));
+                            };
+                            return getParsha(a.title) - getParsha(b.title);
+                        }
+                        // Keep other categories in their current order
+                        return 0;
+                    });
+                    break;
+            }
+
+            if (lessonsArray) {
+                return lessons;
+            } else {
+                localStorage.setItem('lessons', JSON.stringify(lessons));
+                loadLessons();
+            }
+        }
+
+        // Save lesson to localStorage
+        function saveLesson(lesson) {
+            const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+            lessons.push(lesson);
+            localStorage.setItem('lessons', JSON.stringify(lessons));
+        }
+
+        // Edit lesson
+        function editLesson(index) {
+            const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+            const lesson = lessons[index];
+            
+            // Fill form with lesson data
+            document.getElementById('title').value = lesson.title;
+            document.getElementById('description').value = lesson.description;
+            document.getElementById('date').value = lesson.date;
+            document.getElementById('category').value = lesson.category;
+            document.getElementById('col_id').value = lesson.col_id;
+            document.getElementById('duration').value = lesson.duration;
+            
+            // Show thumbnail if exists
+            if (lesson.thumbnail) {
+                const preview = document.getElementById('thumbnailPreview');
+                preview.src = lesson.thumbnail;
+                preview.style.display = 'block';
+            }
+
+            // Update form to handle edit
+            const form = document.getElementById('lessonForm');
+            form.dataset.editIndex = index;
+        }
+
+        // Delete lesson from localStorage
+        function deleteLesson(index) {
+            if (confirm('האם אתה בטוח שברצונך למחוק שיעור זה?')) {
+                const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+                lessons.splice(index, 1);
+                localStorage.setItem('lessons', JSON.stringify(lessons));
+                loadLessons();
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('lessonForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const thumbnailInput = document.getElementById('thumbnail');
+            let thumbnail = 'abba.webp'; // Default thumbnail
+
+            if (thumbnailInput.files.length > 0) {
+                const file = thumbnailInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    thumbnail = e.target.result;
+                    saveLessonData(thumbnail);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                saveLessonData(thumbnail);
+            }
+        });
+
+        function saveLessonData(thumbnail) {
+            const form = document.getElementById('lessonForm');
+            const editIndex = form.dataset.editIndex;
+
+            const lesson = {
+                id: editIndex !== undefined ? JSON.parse(localStorage.getItem('lessons'))[editIndex].id : Date.now(),
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                date: document.getElementById('date').value,
+                category: document.getElementById('category').value,
+                col_id: document.getElementById('col_id').value,
+                duration: document.getElementById('duration').value,
+                thumbnail: thumbnail
+            };
+
+            if (editIndex !== undefined) {
+                // Update existing lesson
+                const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+                lessons[editIndex] = lesson;
+                localStorage.setItem('lessons', JSON.stringify(lessons));
+                delete form.dataset.editIndex;
+            } else {
+                // Add new lesson
+                saveLesson(lesson);
+            }
+
+            loadLessons();
+            form.reset();
+            document.getElementById('thumbnailPreview').style.display = 'none';
+
+            // Show success message
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.innerHTML = editIndex !== undefined ? 'השיעור עודכן בהצלחה!' : 'השיעור נוסף בהצלחה!';
+            form.prepend(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+    </script>
+</body>
+</html> 

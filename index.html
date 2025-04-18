@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="שיעורי הרב זושא וואלף - מאגר שיעורים בנושאי חסידות, פרשת השבוע ומחשבת ישראל">
+    <meta name="keywords" content="הרב זושא וואלף, שיעורי תורה, חסידות, פרשת השבוע, מחשבת ישראל, שיעורים אונליין">
+    <meta name="author" content="הרב זושא וואלף">
+    <meta property="og:title" content="שיעורי הרב זושא וואלף">
+    <meta property="og:description" content="מאגר שיעורים בנושאי חסידות, פרשת השבוע ומחשבת ישראל">
+    <meta property="og:image" content="abba.webp">
+    <meta property="og:url" content="https://www.example.com">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <title>שיעורי הרב זושא וואלף</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-bottom: 2rem;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, var(--accent-color), #f0f7ff);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .main-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .main-header p {
+            color: #64748b;
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+
+        .search-container {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .category-pills {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-pill {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .category-pill:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .category-pill.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .lesson-card {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            height: 100%;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+        }
+
+        .lesson-thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #f1f5f9;
+            overflow: hidden;
+        }
+
+        .lesson-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .lesson-card:hover .lesson-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .lesson-content {
+            padding: 1.5rem;
+        }
+
+        .lesson-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .lesson-meta i {
+            color: var(--primary-color);
+        }
+
+        .lesson-description {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .watch-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .watch-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .modal-content {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        #noResults {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            display: none;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 2rem 0;
+            }
+
+            .main-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-header p {
+                font-size: 1rem;
+            }
+
+            .category-pill {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+
+        .footer {
+            background: var(--bg-color);
+            padding: 2rem 0;
+            margin-top: auto;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer .nav-link {
+            color: #64748b;
+            transition: var(--transition);
+        }
+
+        .footer .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .footer .border-bottom {
+            border-color: #e2e8f0 !important;
+        }
+
+        .footer .text-body-secondary {
+            color: #64748b !important;
+        }
+
+        .sort-controls {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .sort-controls label {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .sort-select {
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 200px;
+        }
+
+        .sort-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <h1 class="text-center">שיעורי הרב זושא וואלף</h1>
+            <p class="text-center">מאגר שיעורים בנושאי חסידות, פרשת השבוע ומחשבת ישראל</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="search-input" placeholder="חיפוש שיעורים...">
+                    </div>
+                </div>
+            </div>
+            <div class="sort-controls">
+                <label for="sortBy">מיין לפי:</label>
+                <select id="sortBy" class="sort-select" onchange="filterAndSortLessons()">
+                    <option value="date-desc">תאריך - מהחדש לישן</option>
+                    <option value="date-asc">תאריך - מהישן לחדש</option>
+                    <option value="title">כותרת - א-ת</option>
+                    <option value="category">קטגוריה</option>
+                    <option value="duration">משך השיעור</option>
+                    <option value="parsha">פרשת השבוע - לפי סדר התורה</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="category-pills" id="categoryPills">
+            <button class="category-pill active" data-category="all">
+                <i class="fas fa-th-large me-2"></i>הכל
+            </button>
+            <button class="category-pill" data-category="מבוא-לחסידות">
+                <i class="fas fa-book-open me-2"></i>מבוא לחסידות
+            </button>
+            <button class="category-pill" data-category="פרשת-השבוע">
+                <i class="fas fa-torah me-2"></i>פרשת השבוע
+            </button>
+            <button class="category-pill" data-category="נשי-ובנות-ישראל">
+                <i class="fas fa-star-of-david me-2"></i>נשי ובנות ישראל
+            </button>
+            <button class="category-pill" data-category="פרקי-אבות">
+                <i class="fas fa-scroll me-2"></i>פרקי אבות
+            </button>
+            <button class="category-pill" data-category="גאולה-ומשיח">
+                <i class="fas fa-dove me-2"></i>גאולה ומשיח
+            </button>
+            <button class="category-pill" data-category="מועדים">
+                <i class="fas fa-menorah me-2"></i>מועדים
+            </button>
+            <button class="category-pill" data-category="מיוחדים">
+                <i class="fas fa-star me-2"></i>מיוחדים
+            </button>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-2x"></i>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults">
+            <i class="fas fa-search fa-2x mb-3"></i>
+            <h3>לא נמצאו תוצאות</h3>
+            <p>נסה לחפש מחדש עם מילות מפתח אחרות</p>
+        </div>
+
+        <!-- Lessons Grid -->
+        <div class="row g-4" id="lessonsGrid">
+            <!-- Lessons will be dynamically populated here -->
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="video-container" id="videoContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <!-- Footer JS -->
+    <script src="footer.js"></script>
+    <!-- Navbar JS -->
+    <script src="navbar.js"></script>
+    <!-- Transitions JS -->
+    <script src="transitions.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize navbar and footer
+        includeNavbar();
+        includeFooter();
+        
+        // Load lessons from localStorage
+        const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+
+        // Function to convert Gregorian date to Hebrew date
+        async function convertToHebrewDate(gregorianDate) {
+            try {
+                const [year, month, day] = gregorianDate.split('-');
+                const response = await fetch(`https://www.hebcal.com/converter?cfg=json&date=${year}-${month}-${day}&g2h=1`);
+                const data = await response.json();
+                return data.hebrew;
+            } catch (error) {
+                console.error('Error converting date:', error);
+                return gregorianDate; // Return original date if conversion fails
+            }
+        }
+
+        // Function to create a lesson card
+        async function createLessonCard(lesson) {
+            const hebrewDate = await convertToHebrewDate(lesson.date);
+            return `
+                <div class="col-md-4 lesson-item" data-category="${lesson.category}">
+                    <div class="lesson-card">
+                        <div class="lesson-thumbnail">
+                            <img src="${lesson.thumbnail}" alt="${lesson.title}">
+                        </div>
+                        <div class="lesson-content">
+                            <h3 class="lesson-title">${lesson.title}</h3>
+                            <div class="lesson-meta">
+                                <span><i class="far fa-calendar-alt"></i> ${hebrewDate}</span>
+                                <span><i class="far fa-clock"></i> ${lesson.duration}</span>
+                            </div>
+                            <p class="lesson-description">${lesson.description}</p>
+                            <button class="watch-button" onclick="watchLesson('${lesson.col_id}', '${lesson.title}')">
+                                <i class="fas fa-play me-2"></i>צפייה בשיעור
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to filter and sort lessons
+        async function filterAndSortLessons() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const activeCategory = document.querySelector('#categoryPills .active').dataset.category;
+            const sortBy = document.getElementById('sortBy').value;
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('lessonsGrid').style.display = 'none';
+            document.getElementById('noResults').style.display = 'none';
+
+            try {
+                // Cache DOM elements
+                const lessonsGrid = document.getElementById('lessonsGrid');
+                const noResults = document.getElementById('noResults');
+                const loading = document.getElementById('loading');
+
+                let filteredLessons = lessons.filter(lesson => {
+                    if (!lesson || typeof lesson !== 'object') return false;
+                    
+                    const title = lesson.title?.toLowerCase() || '';
+                    const description = lesson.description?.toLowerCase() || '';
+                    const category = lesson.category || '';
+                    
+                    const matchesSearch = searchTerm === '' || 
+                                        title.includes(searchTerm) || 
+                                        description.includes(searchTerm);
+                    const matchesCategory = activeCategory === 'all' || activeCategory === category;
+                    return matchesSearch && matchesCategory;
+                });
+
+                // Sort lessons with error handling
+                try {
+                    switch (sortBy) {
+                        case 'date-desc':
+                        case 'date-asc':
+                            filteredLessons.sort((a, b) => {
+                                const dateA = new Date(a.date || 0);
+                                const dateB = new Date(b.date || 0);
+                                return sortBy === 'date-desc' ? dateB - dateA : dateA - dateB;
+                            });
+                            break;
+                        case 'title':
+                            filteredLessons.sort((a, b) => {
+                                const titleA = a.title || '';
+                                const titleB = b.title || '';
+                                return titleA.localeCompare(titleB, 'he');
+                            });
+                            break;
+                        case 'category':
+                            filteredLessons.sort((a, b) => {
+                                const categoryA = a.category || '';
+                                const categoryB = b.category || '';
+                                return categoryA.localeCompare(categoryB, 'he');
+                            });
+                            break;
+                        case 'duration':
+                            filteredLessons.sort((a, b) => {
+                                const getDurationMinutes = (duration) => {
+                                    if (!duration) return 0;
+                                    const match = duration.match(/(\d+)/);
+                                    return match ? parseInt(match[0]) : 0;
+                                };
+                                return getDurationMinutes(a.duration) - getDurationMinutes(b.duration);
+                            });
+                            break;
+                        case 'parsha':
+                            const parshaOrder = [
+                                'בראשית', 'נח', 'לך לך', 'וירא', 'חיי שרה', 'תולדות', 'ויצא', 'וישלח', 'וישב', 'מקץ',
+                                'ויגש', 'ויחי', 'שמות', 'וארא', 'בא', 'בשלח', 'יתרו', 'משפטים', 'תרומה', 'תצוה',
+                                'כי תשא', 'ויקהל', 'פקודי', 'ויקרא', 'צו', 'שמיני', 'תזריע', 'מצורע', 'אחרי מות', 'קדושים',
+                                'אמור', 'בהר', 'בחוקותי', 'במדבר', 'נשא', 'בהעלותך', 'שלח', 'קרח', 'חקת', 'בלק',
+                                'פינחס', 'מטות', 'מסעי', 'דברים', 'ואתחנן', 'עקב', 'ראה', 'שופטים', 'כי תצא', 'כי תבוא',
+                                'נצבים', 'וילך', 'האזינו', 'וזאת הברכה'
+                            ];
+                            filteredLessons.sort((a, b) => {
+                                if (a.category !== 'פרשת-השבוע' || b.category !== 'פרשת-השבוע') return 0;
+                                const getParsha = (title) => {
+                                    if (!title) return -1;
+                                    return parshaOrder.findIndex(parsha => title.includes(parsha));
+                                };
+                                const indexA = getParsha(a.title);
+                                const indexB = getParsha(b.title);
+                                return indexA - indexB;
+                            });
+                            break;
+                    }
+                } catch (sortError) {
+                    console.error('Error sorting lessons:', sortError);
+                }
+
+                if (filteredLessons.length === 0) {
+                    noResults.style.display = 'block';
+                    lessonsGrid.innerHTML = '';
+                } else {
+                    try {
+                        const lessonCards = await Promise.all(
+                            filteredLessons.map(lesson => createLessonCard(lesson).catch(err => {
+                                console.error('Error creating lesson card:', err);
+                                return ''; // Return empty string for failed cards
+                            }))
+                        );
+                        lessonsGrid.innerHTML = lessonCards.filter(card => card).join('');
+                        noResults.style.display = 'none';
+                    } catch (renderError) {
+                        console.error('Error rendering lesson cards:', renderError);
+                        noResults.style.display = 'block';
+                        lessonsGrid.innerHTML = '';
+                    }
+                }
+            } catch (error) {
+                console.error('Error in filterAndSortLessons:', error);
+                document.getElementById('noResults').style.display = 'block';
+                document.getElementById('lessonsGrid').innerHTML = '';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('lessonsGrid').style.display = 'flex';
+            }
+        }
+
+        // Function to safely watch lesson
+        function watchLesson(colId, title) {
+            try {
+                if (!colId) {
+                    console.error('Invalid COL ID');
+                    return;
+                }
+                window.open(`https://col.org.il/news/${encodeURIComponent(colId)}`, '_blank');
+            } catch (error) {
+                console.error('Error opening lesson:', error);
+            }
+        }
+
+        // Enhanced debounce function with error handling
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    try {
+                        clearTimeout(timeout);
+                        func.apply(this, args);
+                    } catch (error) {
+                        console.error('Error in debounced function:', error);
+                    }
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Event listeners with error handling
+        document.getElementById('searchInput')?.addEventListener('input', debounce(filterAndSortLessons, 300));
+        
+        document.querySelectorAll('#categoryPills .category-pill')?.forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                try {
+                    document.querySelectorAll('#categoryPills .category-pill')
+                        .forEach(p => p.classList.remove('active'));
+                    e.target.classList.add('active');
+                    filterAndSortLessons();
+                } catch (error) {
+                    console.error('Error in category pill click handler:', error);
+                }
+            });
+        });
+
+        // Initialize with error handling
+        try {
+            filterAndSortLessons();
+        } catch (error) {
+            console.error('Error during initialization:', error);
+        }
+    </script>
+</body>
+</html>

@@ -461,6 +461,7 @@
         // Function to create a lesson card
         async function createLessonCard(lesson) {
             const hebrewDate = await convertToHebrewDate(lesson.date);
+            console.log('Creating card for lesson:', lesson); // Debug log
             return `
                 <div class="col-md-4 lesson-item" data-category="${lesson.category}">
                     <div class="lesson-card">
@@ -474,7 +475,7 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${lesson.description}</p>
-                            <button class="watch-button" onclick="watchLesson('${lesson.colId}', '${lesson.title}')">
+                            <button class="watch-button" onclick="watchLesson('${lesson.colId || ''}', '${lesson.title}')" data-col-id="${lesson.colId || ''}">
                                 <i class="fas fa-play me-2"></i>צפייה בשיעור
                             </button>
                         </div>
@@ -604,14 +605,17 @@
 
         // Function to safely watch lesson
         function watchLesson(colId, title) {
+            console.log('Watch button clicked:', { colId, title }); // Debug log
             try {
                 if (!colId) {
                     console.error('No COL ID provided for lesson:', title);
+                    alert('לא נמצא מזהה שיעור. נא לבדוק את הנתונים.');
                     return;
                 }
                 
                 // Construct the COL URL
                 const colUrl = `https://col.org.il/news/${colId}`;
+                console.log('Opening URL:', colUrl); // Debug log
                 
                 // Open in new tab
                 window.open(colUrl, '_blank', 'noopener,noreferrer');

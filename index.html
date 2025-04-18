@@ -129,6 +129,7 @@
             border: 1px solid #e2e8f0;
             height: 100%;
             position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .lesson-card:hover {
@@ -161,6 +162,9 @@
             padding: 1.5rem;
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .lesson-title {
@@ -185,10 +189,8 @@
         }
 
         .lesson-description {
-            color: #64748b;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
         }
 
         .watch-button {
@@ -200,18 +202,29 @@
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
             z-index: 1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
         }
 
         .watch-button:hover {
             background: #1d4ed8;
             transform: translateY(-2px);
             color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+        }
+
+        .watch-button i {
+            margin-left: 0.5rem;
+            font-size: 1.1em;
         }
 
         .modal-content {

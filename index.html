@@ -194,37 +194,29 @@
         }
 
         .watch-button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            font-weight: 600;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
             margin-top: 1rem;
         }
 
         .watch-button:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background: var(--primary-color-dark);
             text-decoration: none;
+            color: white;
         }
 
         .watch-button i {
-            margin-left: 0.5rem;
-            font-size: 1.1em;
+            margin-left: 8px;
         }
 
         .modal-content {
@@ -466,6 +458,7 @@
         
         // Load lessons from localStorage
         const lessons = JSON.parse(localStorage.getItem('lessons')) || [];
+        console.log('Loaded lessons from localStorage:', lessons);
 
         // Function to convert Gregorian date to Hebrew date
         async function convertToHebrewDate(gregorianDate) {
@@ -482,14 +475,16 @@
 
         // Function to create a lesson card
         async function createLessonCard(lesson) {
-            const hebrewDate = await convertToHebrewDate(lesson.date);
             console.log('Creating card for lesson:', lesson);
+            const hebrewDate = await convertToHebrewDate(lesson.date);
+            console.log('Converted date:', hebrewDate);
             
             // Escape special characters in title and description
             const escapedTitle = lesson.title.replace(/"/g, '&quot;');
             const escapedDescription = lesson.description.replace(/"/g, '&quot;');
+            console.log('Escaped title:', escapedTitle);
             
-            return `
+            const cardHTML = `
                 <div class="col-md-4 lesson-item" data-category="${lesson.category}">
                     <div class="lesson-card">
                         <div class="lesson-thumbnail">
@@ -502,16 +497,17 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${escapedDescription}</p>
-                            <a href="https://col.org.il/news/${lesson.col_id}" 
+                            <button onclick="watchLesson('${lesson.col_id}', '${escapedTitle}')" 
                                class="watch-button" 
-                               target="_blank" 
-                               rel="noopener noreferrer">
+                               type="button">
                                 <i class="fas fa-play me-2"></i>צפייה בשיעור
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
+            console.log('Generated card HTML:', cardHTML);
+            return cardHTML;
         }
 
         // Function to filter and sort lessons
@@ -519,6 +515,8 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             const activeCategory = document.querySelector('#categoryPills .active').dataset.category;
             const sortBy = document.getElementById('sortBy').value;
+            
+            console.log('Filtering lessons with:', { searchTerm, activeCategory, sortBy });
             
             document.getElementById('loading').style.display = 'block';
             document.getElementById('lessonsGrid').style.display = 'none';
@@ -531,7 +529,10 @@
                 const loading = document.getElementById('loading');
 
                 let filteredLessons = lessons.filter(lesson => {
-                    if (!lesson || typeof lesson !== 'object') return false;
+                    if (!lesson || typeof lesson !== 'object') {
+                        console.log('Invalid lesson object:', lesson);
+                        return false;
+                    }
                     
                     const title = lesson.title?.toLowerCase() || '';
                     const description = lesson.description?.toLowerCase() || '';
@@ -541,8 +542,18 @@
                                         title.includes(searchTerm) || 
                                         description.includes(searchTerm);
                     const matchesCategory = activeCategory === 'all' || activeCategory === category;
+                    
+                    console.log('Lesson filtering:', {
+                        title,
+                        category,
+                        matchesSearch,
+                        matchesCategory
+                    });
+                    
                     return matchesSearch && matchesCategory;
                 });
+
+                console.log('Filtered lessons:', filteredLessons);
 
                 // Sort lessons with error handling
                 try {

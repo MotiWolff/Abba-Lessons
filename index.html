@@ -319,33 +319,38 @@
 
         .row.g-4 {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
-            gap: 2rem;
-            padding: 1rem;
-        }
-
-        .col-md-4 {
-            flex: 0 0 calc(33.333% - 1.33rem);
-            max-width: calc(33.333% - 1.33rem);
+            gap: 20px;
         }
 
         .lesson-item {
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .col-md-4 {
             width: 100%;
-            padding: 0;
         }
 
         @media (max-width: 992px) {
-            .col-md-4 {
-                flex: 0 0 calc(50% - 1rem);
-                max-width: calc(50% - 1rem);
+            .lesson-item {
+                width: calc(50% - 1rem);
             }
         }
 
         @media (max-width: 576px) {
-            .col-md-4 {
-                flex: 0 0 100%;
-                max-width: 100%;
+            .lesson-item {
+                width: 100%;
             }
+        }
+
+        #lessonsGrid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
         }
     </style>
 </head>

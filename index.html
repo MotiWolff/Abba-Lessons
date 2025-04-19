@@ -660,6 +660,9 @@
                     alert('לא נמצא מזהה שיעור. נא לבדוק את הנתונים.');
                     return false;
                 }
+
+                // Open COL page in a new tab
+                window.open(`https://www.col.org.il/video/${col_id}`, '_blank');
                 return true;
             } catch (error) {
                 console.error('Error opening lesson:', error);

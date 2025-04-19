@@ -130,6 +130,8 @@
             height: 100%;
             position: relative;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
 
         .lesson-card:hover {
@@ -164,7 +166,7 @@
             z-index: 2;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            flex: 1;
         }
 
         .lesson-title {
@@ -190,23 +192,23 @@
 
         .lesson-description {
             flex-grow: 1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .watch-button {
             display: inline-flex !important;
             align-items: center;
             justify-content: center;
-            padding: 8px 16px;
+            padding: 0.75rem 1rem;
             background: var(--primary-color);
             color: white !important;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
-            margin-top: 1rem;
+            margin-top: auto;
             width: 100%;
             text-align: center;
             position: relative;
@@ -287,6 +289,18 @@
                 font-size: 0.75rem;
                 padding: 0.375rem 0.75rem;
             }
+
+            .col-md-4 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .col-md-4 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
         }
 
         .footer {
@@ -343,6 +357,18 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
             outline: none;
+        }
+
+        .row.g-4 {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -1rem;
+        }
+
+        .col-md-4 {
+            padding: 1rem;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
         }
     </style>
 </head>
@@ -504,7 +530,7 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${escapedDescription}</p>
-                            <a href="https://www.col.org.il/video/${lesson.col_id}" 
+                            <a href="https://col.org.il/news/${lesson.col_id}" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="watch-button">

@@ -504,11 +504,11 @@
                                 <span><i class="far fa-clock"></i> ${lesson.duration}</span>
                             </div>
                             <p class="lesson-description">${escapedDescription}</p>
-                            <button onclick="watchLesson('${lesson.col_id}', '${escapedTitle}')" 
-                               class="watch-button" 
-                               type="button">
+                            <a href="https://www.col.org.il/video/${lesson.col_id}" 
+                               target="_blank" 
+                               class="watch-button">
                                 <i class="fas fa-play me-2"></i>צפייה בשיעור
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

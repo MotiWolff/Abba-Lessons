@@ -72,31 +72,50 @@
             background: var(--bg-color);
             padding: 1.5rem;
             border-radius: var(--border-radius);
-            margin: 2rem 0;
+            margin: 2rem auto;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 936px;
+            overflow: hidden;
         }
 
         .search-input {
-            border: 1px solid #e2e8f0;
-            border-radius: var(--border-radius);
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            width: 100%;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            margin: 0 1.5rem;
+            width: calc(100% - 3rem);
         }
 
         .category-pills {
-            margin: 1.5rem 0;
+            margin: 1.5rem auto;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding: 5px 15px 15px 15px;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            max-width: 936px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) #f1f5f9;
+        }
+
+        /* Custom scrollbar for Webkit browsers */
+        .category-pills::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .category-pills::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .category-pills::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .category-pills::-webkit-scrollbar-thumb:hover {
+            background-color: #1d4ed8;
         }
 
         .category-pill {
@@ -108,6 +127,8 @@
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.875rem;
+            flex-shrink: 0;
+            min-width: max-content;
         }
 
         .category-pill:hover {
@@ -127,15 +148,11 @@
             border: 1px solid #e2e8f0;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
         .lesson-thumbnail {
             width: 100%;
-            height: 200px;
-            overflow: hidden;
+            aspect-ratio: 16/9;
         }
 
         .lesson-thumbnail img {
@@ -343,9 +360,8 @@
         .col-md-4.lesson-item {
             display: inline-block;
             vertical-align: top;
-            width: 33.333333%;
+            width: calc(50% - 10px);
             padding: 10px;
-            height: 420px;
         }
 
         #lessonsGrid {
@@ -353,9 +369,9 @@
             width: 100%;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 992px) {
             .col-md-4.lesson-item {
-                width: 50%;
+                width: calc(33.333% - 10px);
             }
         }
 
@@ -368,7 +384,7 @@
         .container.main-content {
             max-width: 936px;
             margin: 0 auto;
-            padding: 0;
+            padding: 0 15px;
         }
     </style>
 </head>
